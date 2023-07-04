@@ -8,7 +8,7 @@ Easy installation after a fresh install of Raspbian Buster Lite:
 ```
 sudo apt update
 sudo apt install git
-git clone https://github.com/underdesign/free_netflicks
+git clone https://github.com/underdesign/freenetflicks
 cd free_netflicks
 chmod +x install.sh
 sudo ./install.sh
