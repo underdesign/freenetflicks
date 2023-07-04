@@ -41,8 +41,8 @@ if(strstr($_SERVER['SCRIPT_FILENAME'], "/index.php") !== FALSE) {
 <?php
 $err = "";
 if (!empty($_POST)) {
-  $user = $_POST['suggestion'];
-  file_put_contents('suggestions.txt',"$user\n",FILE_APPEND);
+  $dumbidea = $_POST['suggestion'];
+  file_put_contents('suggestions.txt',"$dumbidea\n",FILE_APPEND);
   $err = "Thanks for your suggestion!";
 }
 ?>
@@ -54,25 +54,25 @@ if (!empty($_POST)) {
 <title>Free Netflicks <?=$your_dir;?></title>
 <style type="text/css">
 body { font-family: 'Lucida Sans', Verdana, Arial, Sans-Serif; color: #333; font-size: 76%; }
+hr { width: 90%; background: #c00; margin: 0 auto; height: 8px; border-radius: 4px; border: 0;}
 ul { list-style-type: none; padding: 10px; margin: 0; width: 600px; }
 li span { float: right; }
 li { border-collapse: collapse; vertical-align: bottom; border-bottom: 1px solid #eee; padding: 8px 10px 3px 5px; font-size:.95em; }
 li.alt { border-collapse: collapse; vertical-align: bottom; border-bottom: 1px solid #eee; background-color: #fcfcfc; }
 li:hover { background-color: #f4f4f4; }
-a { color: #333; text-decoration: none; outline:none; }
-a:hover { color: #f0a; }
+a { color: #c00; text-decoration: none; outline:none; font-weight: bold; }
+a:hover { color: #333; }
 img { border: none; margin: 0 3px -3px 0; }
-h3 { color: #3a3; font-family: 'Lucida Sans', Verdana, Arial, Sans-Serif; font-size: 1.8em; font-weight: 100; margin-bottom: 0; }
+h3, .warning { color: #c00;  font-size: 120%; text-align: center; }
+p {text-align: left; width: 80%; margin: .6em auto;}
 </style>
 </head>
-<body>
-<img src="freenetflix.svg" alt="" title="Free Netflix" width="75%" />
-
-
-<p>Free Netflicks allows free access to files limited to the range of the wireless network.  We expect you can browse our selection quickly and download the file to your device.  Save and watch it later!</p>
-
-
-
+<body><form novalidate action="index.php" method="post">
+<img src="freenetflix.svg" alt="" title="Free Netflix" width="25%" style="margin: 0 auto; display: block;" />
+<p>Free Netflicks allows free access to files limited to the range of the wireless network.  We expect visitors can browse our selection quickly and <em>download the file to your device.</em> <b>Save and watch it later!</b> (although you can stand there and stream the entire thing, but you'll need to recharge your phone soon enough!)</p><hr><p><em>Want to see a file here?</em> <input id="suggestion" type="text" name="suggestion" size="35" placeholder="Enter your suggestion!"><button type="Submit">Add it to our Suggestion List</button></p></form>
+<p class="warning"><?php echo !empty($err)?$err:"&nbsp;";?></p>
+<script>document.onload = function() { document.getElementById("suggestion").focus();};</script>
+<hr>
 
 <!--/*
 Use this for forcing downloads of links:
@@ -86,7 +86,7 @@ Use this for forcing downloads of links:
 // Set the background color for table cells to alternate between
 $cellcolor2="alt";
 
-?><h1>Directory Listing <?=$your_dir;?></h1><?
+?><h3>Today's Free Netflicks Selections <?=$your_dir;?></h3><?
 // Read the files from the directory
 $Dir = ".";
 $Open = opendir ($Dir);
@@ -174,13 +174,6 @@ if($num = is_float($n/2)) {
 echo "</ul>";
 ?>
 
-<hr><h3>Spread the word -  <a href="Free_Netflicks_Sign_Print.pdf">download our free letter print sign!</a></h3>
-
-<form novalidate action="index.php" method="post"><hr><h3>Suggestions?</h3>
-<p class="warning"><?php echo !empty($err)?$err:"&nbsp;";?></p>
-<input id="suggestion" type="text" name="suggestion" size="35" placeholder="Enter your suggestion!"><button type="Submit">Submit</button></p>
-</form>
-<script>document.onload = function() { document.getElementById("suggestion").focus();};</script>
 
 <!--
 <form enctype="multipart/form-data" action="index.php" method="post"><hr><h3>Add Your File</h3>
@@ -189,5 +182,8 @@ Choose a file to upload: <input name="uploadedfile" type="file" /><br />
 <input type="submit" value="Upload File" />
 </form>
 -->
+
+<hr><p>Spread the word: <a href="Free_Netflicks_Sign_Print.pdf">download our free letter print sign</a> but only post it publicly where you can 'see' the wifi network!</p>
+<hr><p>Learn how to install the software and make your own  <a href="http://w.undr.us/freenetflicks">Free Netflicks</a> with a Raspberry Pi computer!
 </body>
 </html>

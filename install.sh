@@ -8,7 +8,7 @@ fi
 echo "Thanks for installing Free Netflicks!"
 echo "Installing the GOAT dependencies..."
 apt update
-apt -y install macchanger hostapd dnsmasq apache2 php
+apt -y install macchanger hostapd dnsmasq apache2 php ntfs-3g exfat-fuse exfat-utils
 
 echo "Subverting the man..."
 cp -f configs/hostapd.conf /etc/hostapd/
