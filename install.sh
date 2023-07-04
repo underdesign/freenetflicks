@@ -15,7 +15,7 @@ cp -f configs/hostapd.conf /etc/hostapd/
 cp -f configs/dnsmasq.conf /etc/
 cp -rf html /var/www/
 chown -R www-data:www-data /var/www/html
-chown root:www-data /var/www/html/.htaccess
+# chown root:www-data /var/www/html/.htaccess
 cp -f configs/rc.local /etc/
 cp -f configs/override.conf /etc/apache2/conf-available/
 a2enconf override
